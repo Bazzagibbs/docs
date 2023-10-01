@@ -3,8 +3,10 @@ languageCode = "en-us"
 title = "BazzaGibbs Docs"
 
 # Language settings
-contentDir = "content"
+contentDir = "content/en"
 defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+enableMissingTranslationPlaceholders = true
 
 enableRobotsTXT = true
 
@@ -52,7 +54,7 @@ anchor = "smart"
 [services]
 [services.googleAnalytics]
 # Comment out the next line to disable GA tracking. Also disables the feature described in [params.ui.feedback].
-id = "UA-00000000-0"
+# id = "UA-00000000-0"
 
 [languages]
 [languages.en]
@@ -110,13 +112,13 @@ github_repo = "https://github.com/bazzagibbs/galileo-docs"
 github_branch= "master"
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
-gcs_engine_id = "d72aa9b2712488cc3"
+# gcs_engine_id = "d72aa9b2712488cc3"
 
 # Enable Algolia DocSearch
 algolia_docsearch = false
 
 # Enable Lunr.js offline search
-offlineSearch = false
+offlineSearch = true
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false
