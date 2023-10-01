@@ -2,6 +2,7 @@
 title: Galileo Documentation
 linkTitle: Galileo
 menu: {main: {weight: 20}}
+type: "docs"
 weight: 20
 ---
 
