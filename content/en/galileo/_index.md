@@ -6,7 +6,7 @@ type: "docs"
 weight: 20
 ---
 
-Galileo is an asset file format for game engines, designed to be easy to implement, efficient to load, and .
+Galileo is an asset file format for game engines, designed to be easy to implement, efficient to load, and simple enough to adapt to existing application designs.
 
 The Galileo format can be implemented incrementally, only supporting a subset of asset types. 
 For example if your application only needs mesh assets, you can choose to implement only Galileo Mesh assets without worrying about any of the
