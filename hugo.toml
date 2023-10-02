@@ -71,7 +71,8 @@ title = "BazzaGibbs Docs"
       unsafe = true
   [markup.highlight]
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-    style = "github-dark"
+    # style = "nord"
+    style = "catppuccin-latte"
     # Uncomment if you want your chosen highlight style used for code blocks without a specified language
     # guessSyntax = "true"
 
@@ -121,7 +122,7 @@ algolia_docsearch = false
 offlineSearch = true
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
-prism_syntax_highlighting = false
+# prism_syntax_highlighting = true
 
 # User interface configuration
 [params.ui]
