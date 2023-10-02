@@ -1,5 +1,5 @@
 ---
-title: Callisto Game Engine Documentation
+title: Callisto Game Engine
 linkTitle: Callisto
 menu: {main: {weight: 30}}
 type: "docs"
