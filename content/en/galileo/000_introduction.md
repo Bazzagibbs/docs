@@ -13,8 +13,9 @@ The key words **MUST**, **MUST NOT**, **REQUIRED**, **SHALL**, **SHALL NOT**, **
 when uppercase and emboldened, are normative and have special meaning.
 These words are to be interpreted as described in [BCP 14](#bcp-14).
 
-<!-- ## Technical Terminology -->
+### Technical Terminology
 
+**slice** - A bounded view into an array represented by a pointer or index of the first element of the slice, and a count of elements.
 
 
 #### External specifications
