@@ -18,20 +18,13 @@ Mesh assets store an object's vertex data, and how the vertices are connected to
 ## Mesh body
 ```
 +------------------------+-------------------------+--------------------------+
-|        40 bytes        |                         |                          |
+|        40 bytes        |       n * 55 bytes      |       m * 32 bytes       |
 |      Mesh manifest     | Vertex group info array |   Extension info array   |
-|                        |                         |                          |
 +------------------------+-------------------------+--------------------------+
-|
 | Buffer
-|
 +-----------------------------------------------------------------------------
-
                                       ...
-
  -----------------------------------------------------------------------------+
-                                                                              |
-                                                                              |
                                                                               |
  -----------------------------------------------------------------------------+
 ```
@@ -70,6 +63,8 @@ struct Mesh_Manifest {
     uint32_t        vertex_group_count;
     uint32_t        extension_count;
     uint64_t        buffer_size;
+
+    uint32_t        next_mesh_extension;    // (index + 1) into extension info array. Zero indicates no extensions.
 };
 ```
 
@@ -104,7 +99,7 @@ struct Vertex_Group_Info {
     uint8_t         color_channel_count;
     uint8_t         joint_weight_channel_count;
     
-    uint32_t        next_extension;             // index into extension_info array. uint32_max indicates no extensions.
+    uint32_t        next_attribute_extension;   // (index + 1) into extension_info array. Zero indicates no extensions.
 };
 ```
 
@@ -114,7 +109,7 @@ struct Extension_Info {
     uint8_t[16]     extension_name;     // ascii string, null terminated or max length 16
     uint32_t        extension_version;
     uint64_t        data_begin_index;   // index into buffer.
-    uint32_t        next_extension;     // index into extension_info array. uint32_max indicates no extensions.
+    uint32_t        next_extension;     // (index + 1) into extension_info array. Zero indicates no extensions.
 };
 ```
 
