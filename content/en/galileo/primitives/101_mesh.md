@@ -50,7 +50,7 @@ The count of `Vertex_Group_Info` structs and `Extension_Info` structs **MUST** b
 +-----------------------------------------------------------------------------------------------+
 |00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31|
 +-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
-|           Bounds center           |           Bounds extents          | VG count  | Ext count |
+|                              Bounding Box                             | VG count  | Ext count |
 +-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
 |      Buffer size      |
 +-----------------------+
@@ -58,8 +58,7 @@ The count of `Vertex_Group_Info` structs and `Extension_Info` structs **MUST** b
 
 ```c
 struct Mesh_Manifest {
-    float32_t[3]    bounds_center;
-    float32_t[3]    bounds_extents;         // half of bounding box dimensions
+    float32_t[6]    bounding_box;           // center.xyz, extents.xyz. Extents are half of box dimensions.
     uint32_t        vertex_group_count;
     uint32_t        extension_count;
     uint64_t        buffer_size;
@@ -79,7 +78,7 @@ A `vertex group` **MUST** contain information for constructing `vertex attribute
 +-----------------------------------------------------------------------------------------------+
 |00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31|
 +-----------+-----------+-----------+-----------+-----------+-----------+-----------------------+
-|           Bounds center           |           Bounds extents          |  Buf slice begin idx  |
+|                              Bounding Box                             |  Buf slice begin idx  |
 +-----------+-----------+-----------+-----------+--+--+--+--+--------+--+-----------------------+
 |    Buf slice size     | Idx count | Vert count|TC|CL|JW|Ext attrib.|
 +-----------------------+-----------+-----------+--+--+--+-----------+
@@ -87,8 +86,8 @@ A `vertex group` **MUST** contain information for constructing `vertex attribute
 
 ```c
 struct Vertex_Group_Info {
-    float32_t[3]    bounds_center;
-    float32_t[3]    bounds_extents;             // half of bounding box dimensions
+    float32_t[6]    bounding_box;               // center.xyz, extents.xyz. Extents are half of box dimensions.
+    uint32_t        vertex_group_count;
     uint64_t        buffer_slice_begin_index;
     uint64_t        buffer_slice_size;
 
