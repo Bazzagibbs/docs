@@ -1,7 +1,7 @@
 ---
 title: Extensions
 linkTitle: Extensions
-weight: 10
+weight: 1000
 type: docs
 simple_list: true
 description: Provides application-specific data related to an asset.
