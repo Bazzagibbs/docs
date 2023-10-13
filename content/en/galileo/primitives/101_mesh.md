@@ -6,11 +6,6 @@ description: A primitive asset for storing vertex data.
 weight: 1
 ---
 
-WIP
-
-_This section is almost ready, I am in the process of moving it from the 
-[Callisto repository](https://github.com/Bazzagibbs/callisto/blob/master/asset/specification.md)._
-
 ## Mesh overview
 
 Mesh assets store an object's vertex data, and how the vertices are connected to form triangles.
@@ -44,7 +39,6 @@ length array of 32 byte [`Extension_Info`](../../extensions) structs.
 
 The count of `Vertex_Group_Info` structs and `Extension_Info` structs **MUST** be provided in the manifest.
 
-
 ### Manifest
 ```
 +-----------------------------------------------------------------------------------------------+
@@ -70,7 +64,7 @@ struct Mesh_Manifest {
 A `mesh` **MUST** contain one or more `vertex groups`. 
 Each `vertex group` **SHOULD** correspond to one draw call in the renderer, and **MAY** be used to draw different parts of a `mesh` with a different material or shader.
 
-A `vertex group` **MUST** contain information for constructing `vertex attribute` slices. All `vertex attribute` data for a given `vertex group` **MUST** be contiguous and de-interleaved.
+A `vertex group` **MUST** contain information for constructing `vertex attribute` slices.
 
 ### Vertex Group Info
 
@@ -91,8 +85,8 @@ struct Vertex_Group_Info {
     uint64_t        buffer_slice_begin_index;
     uint64_t        buffer_slice_size;
 
-    uint32_t        indices_count;
-    uint32_t        vertices_count;
+    uint32_t        index_count;
+    uint32_t        vertex_count;
 
     uint8_t         texcoord_channel_count;
     uint8_t         color_channel_count;
@@ -102,16 +96,52 @@ struct Vertex_Group_Info {
 };
 ```
 
-### Extension Info
-```c
-struct Extension_Info {
-    uint8_t[16]     extension_name;     // ascii string, null terminated or max length 16
-    uint32_t        extension_version;
-    uint64_t        data_begin_index;   // index into buffer.
-    uint32_t        next_extension;     // (index + 1) into extension_info array. Zero indicates no extensions.
-};
-```
+A `vertex group` **MUST** have the following attributes:
+- `float32_t[3]     position`
+- `float32_t[3]     normal`
+- `float32_t[4]     tangent`
+
+A `vertex group` **MAY** have zero or more channels of the following attributes:
+- `float32_t[2]     texcoord`
+- `uint8_t[4]       color`
+- `uint16_t[4]      joint`
+- `uint16_t[4]      weight`
+- application-specific extension attributes
+
+The number of `joint` and `weight` channels for a `vertex group` **MUST** be equal.
 
 ### Buffer
 
+All `vertex attribute` data for a given `vertex group` **MUST** be contiguous and de-interleaved.
+
+For any attributes with multiple channels, each channel of the same type **MUST** be contiguous.
+
+```
++---- Vert group 0 ----+
+|  Index list          |
++----------------------+
+|  Position            |
++----------------------+
+|  Normal              |
++----------------------+
+|  Tangent             |
++----------------------+
+|  ? Texcoord[0]       |
++----------------------+
+|  ? Color[0]          |
++----------------------+
+|  ? Joint[0]          |
++----------------------+
+|  ? Weight[0]         | 
++----------------------+
+|  ? Ext attribute[0]  |
++---- Vert group 1-----+
+|  Index list          |
+
+           ...         
+|                      |
++----------------------+
+|  ? Extension data[0] |
++----------------------+
+```
 
