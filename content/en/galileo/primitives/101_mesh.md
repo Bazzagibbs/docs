@@ -145,3 +145,7 @@ For any attributes with multiple channels, each channel of the same type **MUST*
 +----------------------+
 ```
 
+### Reference implementation
+
+A reference implementation can be found in the [Callisto repository](https://github.com/Bazzagibbs/callisto/blob/master/asset/mesh.odin).
+
