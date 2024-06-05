@@ -21,7 +21,7 @@ A game engine written in [Odin](https://odin-lang.org), with Vulkan and (soon) W
 
 
 {{% blocks/feature icon="fa-solid fa-mobile-retro" title="Adrastea"%}}
-A specialised, experimental game engine for the [Playdate]() handheld game console. Features a 3D 1-bit software renderer.
+A specialised, experimental game engine for the [Playdate](https://play.date/) handheld game console. Features a 3D 1-bit software renderer.
 {{% /blocks/feature %}}
 
 
